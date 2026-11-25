@@ -1,0 +1,25 @@
+name: Shanghai living scene
+
+on:
+  schedule:
+    - cron: "23 */3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scene:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: yuki4266/living-scene@v1
+        with:
+          lat: "31.2304"
+          lon: "121.4737"
+          tz: Asia/Shanghai
+          header: bloom-header.svg
+          sky: "false"
+          commit-message: "🌦 Shanghai scene sync: {state}"
